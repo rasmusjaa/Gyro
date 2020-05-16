@@ -7,6 +7,11 @@ $(document).ready(function() {
 
 	window.addEventListener('deviceorientation', function( event ) {
 		deviceOrientationData = event;
+		$("#data").text('Orientation');
+			$("#data").append(`<br>X ${deviceOrientationData.alpha}`);
+			$("#data").append(`<br>Y ${deviceOrientationData.gamma}`);
+			$("#data").append(`<br>Z ${deviceOrientationData.beta}`);
+			$("#data").append(`<br>screen rotated ${currentScreenOrientation} degrees`);
 	}, false);
 
 	var currentScreenOrientation = window.orientation || 0; // active default
