@@ -66,8 +66,8 @@ $(document).ready(function() {
 			var ball = document.getElementById('ball');
 			ball_x = clamp(rot_x, -29, 29) * 5 + 145;
 			ball_y = clamp(rot_y, -29, 29) * 5 + 145;
-			ball.style.left = ball_x+'px';
-			ball.style.top = ball_y+'px';
+			ball.style.top = ball_x+'px';
+			ball.style.left = ball_y+'px';
 		}
 	}, 10);
 	
