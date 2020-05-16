@@ -1,0 +1,30 @@
+body {
+	font-family: monospace;
+	margin: 0px;
+	background: #fff;
+	min-height: 100vh;
+}
+button {
+	background: white;
+	height: 30px;
+	padding: 5px 10px;
+	border: 1px solid black;
+	font-family: monospace;
+}
+input {
+	height: 18px;
+	padding: 5px;
+	border: 1px solid black;
+	font-family: monospace;
+}
+h1, h2, h3, h4 {
+	font-family: 'Dosis', sans-serif;
+}
+.hidden {
+	display: none;
+}
+p {
+	margin: 8px 0px;
+	font-size: 15px;
+	line-height: 18px;
+}
