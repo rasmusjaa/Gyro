@@ -4,13 +4,18 @@ var rot_z = 0;
 var acc_x = 0;
 var acc_y = 0;
 var acc_z = 0;
-var ball_x = 0;
-var ball_y = 0;
-var looping = true;
+var ball_x = 150.5;
+var ball_y = 150.5;
+var move_x = 150.5;
+var move_y = 150.5;
+var looping = false;
+var gravity = false;
 var cookie = "";
+var ball = null;
 
 $(document).ready(function() {
 //	getCookie();
+	ball = document.getElementById('ball');
 
 	var deviceOrientationData = null;
 
@@ -54,20 +59,31 @@ $(document).ready(function() {
 	window.setInterval(function(){
 		if (looping)
 		{
-			$("#data").text('Orientation');
-			$("#data").append(`<br>Rotation X ${rot_x}`);
-			$("#data").append(`<br>Rotation Y ${rot_y}`);
-			$("#data").append(`<br>Rotation Z ${rot_z}`);
-			$("#data").append(`<br>Acceleration X ${acc_x}`);
-			$("#data").append(`<br>Acceleration Y ${acc_y}`);
-			$("#data").append(`<br>Acceleration Z ${acc_z}`);
-			$("#data").append(`<br>screen rotated ${currentScreenOrientation} degrees`);
+			$("#data").text(`Orientation`);
+			$("#data").append(`
+			<br>Rotation X ${rot_x}
+			<br>Rotation Y ${rot_y}
+			<br>Rotation Z ${rot_z}
+			<br>Acceleration X ${acc_x}
+			<br>Acceleration Y ${acc_y}
+			<br>Acceleration Z ${acc_z}
+			<br>screen rotated ${currentScreenOrientation} degrees`);
 			
-			var ball = document.getElementById('ball');
-			ball_x = clamp(rot_x, -29, 29) * 5 + 145;
-			ball_y = clamp(rot_y, -29, 29) * 5 + 145;
-			ball.style.top = ball_x+'px';
-			ball.style.left = ball_y+'px';
+			if (gravity) {
+				move_x = clamp(rot_x, -29, 29) / 10;
+				move_y = clamp(rot_y, -29, 29) / 10;
+				ball_x = ball_x + move_x;
+				ball_y = ball_y + move_y;
+				ball_x = clamp(ball_x, 0, 290);
+				ball_y = clamp(ball_y, 0, 290);
+				ball.style.top = ball_x+'px';
+				ball.style.left = ball_y+'px';
+			} else {
+				ball_x = clamp(rot_x, -29, 29) * 5 + 145;
+				ball_y = clamp(rot_y, -29, 29) * 5 + 145;
+				ball.style.top = ball_x+'px';
+				ball.style.left = ball_y+'px';
+			}
 		}
 	}, 10);
 	
@@ -78,6 +94,15 @@ $(document).ready(function() {
 		}
 		else {
 			looping = true;
+		}
+	});
+
+	$('#gravity').click(function() {
+		if (gravity) {
+			gravity = false;
+		}
+		else {
+			gravity = true;
 		}
 	});
 
