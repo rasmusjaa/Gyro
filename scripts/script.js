@@ -86,8 +86,8 @@ $(document).ready(function() {
 			}
 		} else {
 			$("#data").text(`Phone and browser must support motion sensors and they must be allowed for this site.
-			 Keep your phone screen upwards or put it on a table and press start. Rotate your phone along x and y axis. 
-			 Rotation is clamped to 30 degrees in each direction.`);
+			 Hold the phone screen up or put it on a table and press Start. Rotate your phone to check sensor data. 
+			 Visual representation uses x and y axis and is clamped within 30 degrees.`);
 		}
 	}, 10);
 	
