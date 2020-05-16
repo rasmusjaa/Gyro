@@ -1,3 +1,10 @@
+var rot_x = 0;
+var rot_y = 0;
+var rot_z = 0;
+var acc_x = 0;
+var acc_y = 0;
+var acc_z = 0;
+var looping = true;
 var cookie = "";
 
 $(document).ready(function() {
@@ -7,12 +14,24 @@ $(document).ready(function() {
 
 	window.addEventListener('deviceorientation', function( event ) {
 		deviceOrientationData = event;
-		$("#data").text('Orientation');
-			$("#data").append(`<br>X ${deviceOrientationData.alpha}`);
-			$("#data").append(`<br>Y ${deviceOrientationData.gamma}`);
-			$("#data").append(`<br>Z ${deviceOrientationData.beta}`);
-			$("#data").append(`<br>screen rotated ${currentScreenOrientation} degrees`);
+		rot_x = (deviceOrientationData.beta);
+		rot_y = deviceOrientationData.gamma;
+		rot_z = deviceOrientationData.alpha;
+		
 	}, false);
+
+
+	function handleMotionEvent(event) {
+
+		acc_x = event.accelerationIncludingGravity.x;
+		acc_y = event.accelerationIncludingGravity.y;
+		acc_z = event.accelerationIncludingGravity.z;
+	
+		// Do something awesome.
+	}
+	
+	window.addEventListener("devicemotion", handleMotionEvent, true);
+
 
 	var currentScreenOrientation = window.orientation || 0; // active default
 
@@ -20,16 +39,27 @@ $(document).ready(function() {
 		currentScreenOrientation = window.orientation;
 	}, false);
 
-	$('#find').click(function() {
-		if (true) {
-			$("#data").text('Orientation');
-			$("#data").append(`<br>X ${deviceOrientationData.alpha}`);
-			$("#data").append(`<br>Y ${deviceOrientationData.gamma}`);
-			$("#data").append(`<br>Z ${deviceOrientationData.beta}`);
-			$("#data").append(`<br>screen rotated ${currentScreenOrientation} degrees`);
 
-			
-			console.log(currentScreenOrientation);
+	window.setInterval(function(){
+		$("#data").text('Orientation');
+		$("#data").append(`<br>Rotation X ${rot_x}`);
+		$("#data").append(`<br>Rotation Y ${rot_y}`);
+		$("#data").append(`<br>Rotation Z ${rot_z}`);
+		$("#data").append(`<br>Acceleration X ${rot_x}`);
+		$("#data").append(`<br>Acceleration Y ${rot_y}`);
+		$("#data").append(`<br>Acceleration Z ${rot_z}`);
+		$("#data").append(`<br>screen rotated ${currentScreenOrientation} degrees`);
+	  }, 10);
+	
+
+	$('#loop').click(function() {
+		if (looping) {
+			looping = false;
+			clearInterval();
+		}
+		else {
+			looping = true;
+			window.setInterval();
 		}
 	});
 
