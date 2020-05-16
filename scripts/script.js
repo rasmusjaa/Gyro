@@ -3,16 +3,28 @@ var cookie = "";
 $(document).ready(function() {
 //	getCookie();
 
+	var deviceOrientationData = null;
+
+	window.addEventListener('deviceorientation', function( event ) {
+		deviceOrientationData = event;
+	}, false);
+
+	var currentScreenOrientation = window.orientation || 0; // active default
+
+	window.addEventListener('orientationchange', function() {
+		currentScreenOrientation = window.orientation;
+	}, false);
+
 	$('#find').click(function() {
 		if (true) {
-			$("#data").text('testi');
+			$("#data").text('Orientation');
+			$("#data").append(`<br>X ${cookie}`);
+			$("#data").append(`<br>Y ${cookie}`);
+			$("#data").append(`<br>Z ${cookie}`);
+			$("#data").append(`<br>up ${currentScreenOrientation}`);
 
-			var deviceOrientationData = null;
-
-			window.addEventListener('deviceorientation', function( event ) {
-				deviceOrientationData = event;
-			}, false);
-			console.log(deviceOrientationData);
+			
+			console.log(currentScreenOrientation);
 		}
 	});
 
