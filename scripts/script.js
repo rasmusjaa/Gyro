@@ -18,7 +18,6 @@ $(document).ready(function() {
 
 	window.addEventListener('deviceorientation', function( event ) {
 		if (event
-			&& event.absolute
 			&& event.alpha
 			&& event.beta
 			&& event.gamma)
@@ -57,7 +56,7 @@ $(document).ready(function() {
 		{
 			$("#data").text(``);
 			$("#data").append(`
-			Absolute (z to north): ${absolute}
+			Absolute (z 0 is north): ${absolute}
 			<br>Rotation X ${rot_x}
 			<br>Rotation Y ${rot_y}
 			<br>Rotation Z ${rot_z}
