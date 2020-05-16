@@ -96,19 +96,6 @@ $(document).ready(function() {
 		else {
 			$('#loop').addClass("black");
 			looping = true;
-
-			const sensor = new AbsoluteOrientationSensor();
-				Promise.all([navigator.permissions.query({ name: "accelerometer" }),
-							navigator.permissions.query({ name: "magnetometer" }),
-							navigator.permissions.query({ name: "gyroscope" })])
-					.then(results => {
-						if (results.every(result => result.state === "granted")) {
-						sensor.start();
-						console.log(sensor);
-						} else {
-						console.log("No permissions to use AbsoluteOrientationSensor.");
-						}
-			});
 		}
 	});
 
