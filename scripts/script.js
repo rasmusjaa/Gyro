@@ -14,20 +14,21 @@ $(document).ready(function() {
 
 	window.addEventListener('deviceorientation', function( event ) {
 		deviceOrientationData = event;
-		rot_x = (deviceOrientationData.beta);
-		rot_y = deviceOrientationData.gamma;
-		rot_z = deviceOrientationData.alpha;
+		// X -180 - 180
+		rot_x = deviceOrientationData.beta.toFixed(2);
+		// X -90 - 90, loops twice over
+		rot_y = deviceOrientationData.gamma.toFixed(2);
+		// Z -180 - 180
+		rot_z = deviceOrientationData.alpha.toFixed(2);
 		
 	}, false);
 
 
 	function handleMotionEvent(event) {
 
-		acc_x = event.accelerationIncludingGravity.x;
-		acc_y = event.accelerationIncludingGravity.y;
-		acc_z = event.accelerationIncludingGravity.z;
-	
-		// Do something awesome.
+		acc_x = event.accelerationIncludingGravity.x.toFixed(2);
+		acc_y = event.accelerationIncludingGravity.y.toFixed(2);
+		acc_z = event.accelerationIncludingGravity.z.toFixed(2);
 	}
 	
 	window.addEventListener("devicemotion", handleMotionEvent, true);
@@ -45,9 +46,9 @@ $(document).ready(function() {
 		$("#data").append(`<br>Rotation X ${rot_x}`);
 		$("#data").append(`<br>Rotation Y ${rot_y}`);
 		$("#data").append(`<br>Rotation Z ${rot_z}`);
-		$("#data").append(`<br>Acceleration X ${rot_x}`);
-		$("#data").append(`<br>Acceleration Y ${rot_y}`);
-		$("#data").append(`<br>Acceleration Z ${rot_z}`);
+		$("#data").append(`<br>Acceleration X ${acc_x}`);
+		$("#data").append(`<br>Acceleration Y ${acc_y}`);
+		$("#data").append(`<br>Acceleration Z ${acc_z}`);
 		$("#data").append(`<br>screen rotated ${currentScreenOrientation} degrees`);
 	  }, 10);
 	
