@@ -65,8 +65,8 @@ $(document).ready(function() {
 			<br>screen rotated ${currentScreenOrientation} degrees`);
 			
 			if (gravity) {
-				move_x = clamp(rot_x, -29, 29) / 10;
-				move_y = clamp(rot_y, -29, 29) / 10;
+				move_x = acc_x * -1;
+				move_y = acc_y;
 				ball_x = ball_x + move_x;
 				ball_y = ball_y + move_y;
 				ball_x = clamp(ball_x, 0, 288);
