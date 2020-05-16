@@ -16,18 +16,20 @@ var ball = null;
 $(document).ready(function() {
 	ball = document.getElementById('ball');
 
-	var deviceOrientationData = null;
 	window.addEventListener('deviceorientation', function( event ) {
-		deviceOrientationData = event;
-		if (event)
+		if (event
+			&& event.absolute
+			&& event.alpha
+			&& event.beta
+			&& event.gamma)
 		{
-			absolute = deviceOrientationData.absolute;
+			absolute = event.absolute;
 			// X -180 - 180
-			rot_x = deviceOrientationData.beta.toFixed(2);
+			rot_x = event.beta.toFixed(2);
 			// Y -90 - 90, loops twice over
-			rot_y = deviceOrientationData.gamma.toFixed(2);
+			rot_y = event.gamma.toFixed(2);
 			// Z 0 - 360
-			rot_z = deviceOrientationData.alpha.toFixed(2);
+			rot_z = event.alpha.toFixed(2);
 		}
 	}, false);
 
@@ -66,7 +68,7 @@ $(document).ready(function() {
 			
 			if (gravity) {
 				move_x = acc_x * -1;
-				move_y = acc_y;
+				move_y = acc_y * 1;
 				ball_x = ball_x + move_x;
 				ball_y = ball_y + move_y;
 				ball_x = clamp(ball_x, 0, 288);
@@ -81,8 +83,8 @@ $(document).ready(function() {
 			}
 		} else {
 			$("#data").text(`Phone and browser must support motion sensors and they must be allowed for this site.
-			 Hold the phone screen up or put it on a table and press Start. Rotate your phone to check sensor data. 
-			 Visual representation uses x and y axis and is clamped within 30 degrees.`);
+			 Hold the phone screen up and press Start. Rotate your phone to check sensor data. 
+			 Visual representation uses x and y axis, rotation is clamped within 30 degrees.`);
 		}
 	}, 10);
 
