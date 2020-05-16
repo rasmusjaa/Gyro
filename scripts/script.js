@@ -90,18 +90,22 @@ $(document).ready(function() {
 
 	$('#loop').click(function() {
 		if (looping) {
+			$('#loop').removeClass("black");
 			looping = false;
 		}
 		else {
+			$('#loop').addClass("black");
 			looping = true;
 		}
 	});
 
 	$('#gravity').click(function() {
 		if (gravity) {
+			$('#gravity').removeClass("black");
 			gravity = false;
 		}
 		else {
+			$('#gravity').addClass("black");
 			gravity = true;
 		}
 	});

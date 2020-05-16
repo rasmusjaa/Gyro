@@ -18,8 +18,9 @@ input {
 	border: 1px solid black;
 	font-family: monospace;
 }
-h1, h2, h3, h4 {
-	font-family: 'Dosis', sans-serif;
+.black {
+	background: #000;
+	color: #fff;
 }
 .hidden {
 	display: none;
