@@ -1,3 +1,4 @@
+var absolute = false;
 var rot_x = 0;
 var rot_y = 0;
 var rot_z = 0;
@@ -20,6 +21,7 @@ $(document).ready(function() {
 		deviceOrientationData = event;
 		if (event)
 		{
+			absolute = deviceOrientationData.absolute;
 			// X -180 - 180
 			rot_x = deviceOrientationData.beta.toFixed(2);
 			// Y -90 - 90, loops twice over
@@ -40,7 +42,7 @@ $(document).ready(function() {
 			acc_y = event.accelerationIncludingGravity.y.toFixed(2);
 			acc_z = event.accelerationIncludingGravity.z.toFixed(2);
 		}
-	}	
+	}
 	window.addEventListener("devicemotion", handleMotionEvent, true);
 
 	var currentScreenOrientation = window.orientation || 0;
@@ -53,7 +55,8 @@ $(document).ready(function() {
 		{
 			$("#data").text(``);
 			$("#data").append(`
-			Rotation X ${rot_x}
+			Absolute (z to north): ${absolute}
+			<br>Rotation X ${rot_x}
 			<br>Rotation Y ${rot_y}
 			<br>Rotation Z ${rot_z}
 			<br>Acceleration X ${acc_x}
@@ -91,6 +94,19 @@ $(document).ready(function() {
 		else {
 			$('#loop').addClass("black");
 			looping = true;
+
+			const sensor = new AbsoluteOrientationSensor();
+				Promise.all([navigator.permissions.query({ name: "accelerometer" }),
+							navigator.permissions.query({ name: "magnetometer" }),
+							navigator.permissions.query({ name: "gyroscope" })])
+					.then(results => {
+						if (results.every(result => result.state === "granted")) {
+						sensor.start();
+						console.log(sensor);
+						} else {
+						console.log("No permissions to use AbsoluteOrientationSensor.");
+						}
+			});
 		}
 	});
 
