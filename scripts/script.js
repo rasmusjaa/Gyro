@@ -71,8 +71,8 @@ $(document).ready(function() {
 				ball_y = ball_y + move_y;
 				ball_x = clamp(ball_x, 0, 288);
 				ball_y = clamp(ball_y, 0, 288);
-				ball.style.top = ball_x+'px';
-				ball.style.left = ball_y+'px';
+				ball.style.left = ball_x+'px';
+				ball.style.top = ball_y+'px';
 			} else {
 				ball_x = clamp(rot_x, -29, 29) * 5 + 144;
 				ball_y = clamp(rot_y, -29, 29) * 5 + 144;
