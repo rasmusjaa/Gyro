@@ -59,9 +59,9 @@ $(document).ready(function() {
 	window.setInterval(function(){
 		if (looping)
 		{
-			$("#data").text(`Orientation`);
+			$("#data").text(``);
 			$("#data").append(`
-			<br>Rotation X ${rot_x}
+			Rotation X ${rot_x}
 			<br>Rotation Y ${rot_y}
 			<br>Rotation Z ${rot_z}
 			<br>Acceleration X ${acc_x}
@@ -84,6 +84,10 @@ $(document).ready(function() {
 				ball.style.top = ball_x+'px';
 				ball.style.left = ball_y+'px';
 			}
+		} else {
+			$("#data").text(`Phone and browser must support motion sensors and they must be allowed for this site.
+			 Keep your phone screen upwards or put it on a table and press start. Rotate your phone along x and y axis. 
+			 Rotation is clamped to 30 degrees in each direction.`);
 		}
 	}, 10);
 	
