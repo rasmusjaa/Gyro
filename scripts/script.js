@@ -18,10 +18,10 @@ $(document).ready(function() {
 	$('#find').click(function() {
 		if (true) {
 			$("#data").text('Orientation');
-			$("#data").append(`<br>X ${cookie}`);
-			$("#data").append(`<br>Y ${cookie}`);
-			$("#data").append(`<br>Z ${cookie}`);
-			$("#data").append(`<br>up ${currentScreenOrientation}`);
+			$("#data").append(`<br>X ${deviceOrientationData.alpha}`);
+			$("#data").append(`<br>Y ${deviceOrientationData.gamma}`);
+			$("#data").append(`<br>Z ${deviceOrientationData.beta}`);
+			$("#data").append(`<br>screen rotated ${currentScreenOrientation} degrees`);
 
 			
 			console.log(currentScreenOrientation);
