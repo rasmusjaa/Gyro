@@ -28,3 +28,19 @@ p {
 	font-size: 15px;
 	line-height: 18px;
 }
+#field {
+	position: relative;
+	margin: 15px;
+	width: 300px;
+	height: 300px;
+	background-color: green;
+	border: 3px solid black;
+}
+#ball {
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	background-color: white;
+	border: 1px solid black;
+	border-radius: 50%;
+}
