@@ -2,7 +2,7 @@
 
 Demo: https://rasmusjaa.github.io/Gyro/
 
-Quick test that checks if phone and browser support rotation and acceleration sensors.
+Quick test that checks if phone and browser support rotation and acceleration sensors. Tested on Android with Chrome browser.
 
 Rotations and accelerations are displayed with numbers rounded to two decimals.
 
